@@ -1,21 +1,28 @@
-
-h1 {
-    text-align: center;
-    background-color: royalblue;
-    color:white;
+*{
+    box-sizing: border-box;
+  
+}
+.mt-2{
     font-family: 'Libre Baskerville', serif;
-    width:100%;
-    padding:15px;
-  }
-  .input-group {
-    margin-bottom: 15px;
-  }
-  .header-style {
+
+}
+.header-style {
     font-size: 50px;
     color: #ffffff;
     font-family: 'Libre Baskerville', serif;
     text-align: center;
+    width: 100%;
+    padding: 10px 20px 10px 20px;
+    background-color: cadetblue;
   }
+
+
+
+
+.input-group {
+    margin-bottom: 15px;
+  }
+ 
   .card {
     width:100%;
   }
@@ -23,7 +30,28 @@ h1 {
     background-color: royalblue;
     margin: 15px;
   }
+  p {
+    font-family: 'Libre Baskerville', serif;
+
+  }
   h3 {
     float:left;
   }
-  
+
+h4{
+  font-family: 'Libre Baskerville', serif;
+
+}
+
+.input-group{
+    font-family: 'Libre Baskerville', serif;
+
+  }
+
+  .list-group{
+    font-family: 'Libre Baskerville', serif;
+
+  }
+  .card-body{
+    font-family: 'Libre Baskerville', serif;
+  }
