@@ -13,6 +13,18 @@ Javascript, Jquery, CSS, HTML, Font Awesome, Google Fonts, Bootstrap, and moment
 
 # Issues
 * Still haven't figured out how to make search history clickable to be presented with current and future data
+* Need to figure out how to search specific city along with state.
+
+# Application In Use
+![weather](assets/weatherdashboard.gif)
+
+
+
+
+# Links
+* [https://github.com/Vinyl77/Weather-Dashboard]
+* [https://vinyl77.github.io/Weather-Dashboard/]
+
 
 
 

@@ -64,7 +64,7 @@ var searchHistory = [];
             
             var lat = response.coord.lat;
             var lon = response.coord.lon;
-            
+            // call for the current uv index
             $.ajax({
                 url: "https://api.openweathermap.org/data/2.5/uvi?appid=cfd7298139fb45786d6fd71f01931c56&lat=" + lat + "&lon=" + lon, // my api code
                 method: "GET"
@@ -82,13 +82,14 @@ var searchHistory = [];
                     $("span").attr("class", "btn btn-outline-danger");
                 }
             });
-            
+            // call for the 5 day forecast
             $.ajax({
                 url: "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=49fb27317373bb54f7d9243387af6df3", // my api code
                 method: "GET"
             
             }).then(function (response) {
                 for (i = 0; i < 5; i++) { 
+                    // loop to display 5 cards
                     
                     var newCard = $("<div>").attr("class", "col fiveDay bg-primary text-white rounded-lg p-2");
                     $("#weeklyForecast").append(newCard);
@@ -110,6 +111,7 @@ var searchHistory = [];
                     var humidity = response.list[i * 8].main.humidity;
                     
                     newCard.append($("<p>").html("Humidity: " + humidity));
+                    // appends all the temp, humidity, and icons.
                 }
             });
        
@@ -121,6 +123,7 @@ var searchHistory = [];
 
 $("#searchCity").click(function() {
     city = $("#city").val().trim();
+    // searches then adds it to the history
     
     getData();
     var checkArray = searchHistory.includes(city);
@@ -132,7 +135,7 @@ $("#searchCity").click(function() {
         searchHistory.push(city);
         localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
         var listButton = $("<a>").attr({
-            
+            // creating search history buttons
             class: "list-group-item list-group-item-action",
             href: "#"
            
@@ -145,22 +148,21 @@ $("#searchCity").click(function() {
  
     
    $("#city").val("");
+//clears form after city is entered
 
 
 });
 
-
+// need to come up with solution and have yet to figure it out.  Might figure it out with tutor
 // $("#searcher").click(function() {
 //     city = $(this).text();
 //     getData();
     
 // });
 
-$("#searchCity").keypress(function () {  
-    var _val = $("#searchCity").val();  
-    var _txt = _val.charAt(0).toUpperCase() + _val.slice(1);  
-    $("#searchCity").val(_txt);
-});
+
+
+
 
 $("#clear").click( function() {
     window.localStorage.clear();
