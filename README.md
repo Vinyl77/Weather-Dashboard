@@ -6,8 +6,13 @@ Javascript, Jquery, CSS, HTML, Font Awesome, Google Fonts, Bootstrap, and moment
 
 # Application
 
-* City current weather is searchable by information put in the input and button pressed
-*
+*City current weather is searchable by information put in the input and button pressed
+*City 5 day forecast is appended when entered
+*Search History appended on a list below search form.
+*Search History is loaded to local storage.
+
+# Issues
+*Still haven't figured out how to make search history clickable to be presented with current and future data
 
 
 

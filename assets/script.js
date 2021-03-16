@@ -1,14 +1,17 @@
 var searchHistory = [];
+// contains an empty list till data is given
 
+
+// returns history from local storage.
     function getItems() {
         var storedCities = JSON.parse(localStorage.getItem("searchHistory"));
         console.log("searcHistory");
         if (storedCities !== null) {
             searchHistory = storedCities;
         }
-         
+        //  10 locations are listed
         for (i = 0; i < searchHistory.length; i++) {
-            if (i == 8) {
+            if (i == 10) {
                 break;
               }
         
@@ -16,7 +19,8 @@ var searchHistory = [];
                 class: "list-group-item list-group-item-action",
                 href: "#"
             });
-            
+            // appends history li
+        
             listButton.text(searchHistory[i]);
             $(".list-group").append(listButton);
         }
@@ -146,10 +150,11 @@ $("#searchCity").click(function() {
 });
 
 
-$(".list-group-item").click(function() {
-     city = $(this).text();
-    getItems();
-});
+// $("#searcher").click(function() {
+//     city = $(this).text();
+//     getData();
+    
+// });
 
 $("#searchCity").keypress(function () {  
     var _val = $("#searchCity").val();  
