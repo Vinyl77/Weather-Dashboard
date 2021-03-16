@@ -1,68 +1,11 @@
-
-
-$("#searchCity").click(function() {
-    city = $("#city").val().trim();
-    
-    getData();
-    var checkArray = searchHistory.includes(city);
-    
-    
-
-    if (checkArray == true) {
-        return
-}
-    else {
-        searchHistory.push(city);
-        localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
-        var cityListButton = $("<a>").attr({
-            
-            class: "list-group-item list-group-item-action",
-            href: "#"
-           
-        });
-        cityListButton.text(city);
-        $(".list-group").append(cityListButton);
-    
-        
-    };
- 
-    
-   $("#city").val("");
-
-
-});
-
-
-$(".list-group-item").click(function() {
-    city = $(this).text();
-    getData();
-});
-
-
-
-
-
-
-
-
-
-
-$('#clear').click( function() {
-    window.localStorage.clear();
-    location.reload();
-    return false;
-    });
-
-    
-    
-    var searchHistory = [];
+var searchHistory = [];
 
     function getItems() {
         var storedCities = JSON.parse(localStorage.getItem("searchHistory"));
         console.log("searcHistory");
         if (storedCities !== null) {
             searchHistory = storedCities;
-        };
+        }
          
         for (i = 0; i < searchHistory.length; i++) {
             if (i == 8) {
@@ -77,14 +20,14 @@ $('#clear').click( function() {
             listButton.text(searchHistory[i]);
             $(".list-group").append(listButton);
         }
-    };
+    }
     var city;
     var mainCard = $(".card-body");
     
     getItems();
     
     function getData() { // my api code
-        var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=cfd7298139fb45786d6fd71f01931c56" // starts call for current conditions
+        var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=cfd7298139fb45786d6fd71f01931c56"; // starts call for current conditions
         mainCard.empty();
         $("#weeklyForecast").empty();
         
@@ -92,10 +35,12 @@ $('#clear').click( function() {
             url: queryURL,
             method: "GET"
         }).then(function (response) {
+            console.log(getData);
             
-            var date = moment().format(" MM/DD/YYYY");
+            var date = moment().format(" MM/DD/YYYY", "hh:mm:ss a");
             
             var iconCode = response.weather[0].icon;
+            console.log(response.weather);
                
             
             var iconURL = "http://openweathermap.org/img/w/" + iconCode + ".png";
@@ -125,14 +70,14 @@ $('#clear').click( function() {
                 // 
                 if (response.value <= 2) {
                     $("span").attr("class", "btn btn-outline-success");
-                };
+                }
                 if (response.value > 2 && response.value <= 5) {
                     $("span").attr("class", "btn btn-outline-warning");
-                };
+                }
                 if (response.value > 5) {
                     $("span").attr("class", "btn btn-outline-danger");
-                };
-            })
+                }
+            });
             
             $.ajax({
                 url: "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=49fb27317373bb54f7d9243387af6df3", // my api code
@@ -162,11 +107,61 @@ $('#clear').click( function() {
                     
                     newCard.append($("<p>").html("Humidity: " + humidity));
                 }
-            })
-        })
+            });
+       
+         });
 
         
-    };
+    }
+
+
+$("#searchCity").click(function() {
+    city = $("#city").val().trim();
+    
+    getData();
+    var checkArray = searchHistory.includes(city);
+    
+    if (checkArray == true) {
+        return
+    }
+    else {
+        searchHistory.push(city);
+        localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
+        var listButton = $("<a>").attr({
+            
+            class: "list-group-item list-group-item-action",
+            href: "#"
+           
+        });
+        listButton.text(city);
+        $(".list-group").append(listButton);
+    
+        
+    }
+ 
+    
+   $("#city").val("");
+
+
+});
+
+
+$(".list-group-item").click(function() {
+     city = $(this).text();
+    getItems();
+});
+
+$("#searchCity").keypress(function () {  
+    var _val = $("#searchCity").val();  
+    var _txt = _val.charAt(0).toUpperCase() + _val.slice(1);  
+    $("#searchCity").val(_txt);
+});
+
+$("#clear").click( function() {
+    window.localStorage.clear();
+    location.reload();
+    return false;
+    });
 
 
 
