@@ -15,9 +15,9 @@ var searchHistory = [];
                 break;
               }
         
-            listButton = $("<a>").attr({
+            listButton = $("<li>").attr({
                 class: "list-group-item list-group-item-action",
-                href: "#"
+          
             });
             // appends history li
         
@@ -120,6 +120,16 @@ var searchHistory = [];
         
     }
 
+    // this on click button makes the search history list clickable
+
+$('#searcher').on('click', 'li', function (){
+    console.log('this', $(this).text())
+    city = $(this).text();
+    
+    getData();
+})
+
+
 
 $("#searchCity").click(function() {
     city = $("#city").val().trim();
@@ -134,15 +144,15 @@ $("#searchCity").click(function() {
     else {
         searchHistory.push(city);
         localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
-        var listButton = $("<a>").attr({
+        var listButton = $("<li>").attr({
             // creating search history buttons
-            class: "list-group-item list-group-item-action",
-            href: "#"
+            class: "list-group-item list-group-item-action historyItem",
+            // href: "#"
            
         });
         listButton.text(city);
         $(".list-group").append(listButton);
-    
+        
         
     }
  
@@ -153,12 +163,6 @@ $("#searchCity").click(function() {
 
 });
 
-// need to come up with solution and have yet to figure it out.  Might figure it out with tutor
-// $("#searcher").click(function() {
-//     city = $(this).text();
-//     getData();
-    
-// });
 
 
 
